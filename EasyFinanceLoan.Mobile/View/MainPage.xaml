@@ -1,8 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EasyFinanceLoan.Mobile.MainPage">
-
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="EasyFinanceLoan.Mobile.MainPage"
+             xmlns:viewmodel="clr-namespace:EasyFinanceLoan.Mobile.ViewModel"
+             x:DataType="viewmodel:LoginViewModel">
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+    </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout
             Spacing="25"
@@ -10,10 +20,21 @@
             VerticalOptions="Center"
             BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
             <Label  HorizontalTextAlignment="Center" FontSize="48" TextColor="#55dd55" FontAttributes="Bold">ea$yFinance</Label>
-            <Entry Placeholder="USERNAME" Text="{Binding UserName}">
-                
+            <Entry Placeholder="USERNAME" Text="{Binding userName}">
+                <Entry.Behaviors>
+                    <toolkit:TextValidationBehavior
+                        InvalidStyle="{StaticResource InvalidEntryStyle}"
+                        ValidStyle="{StaticResource ValidEntryStyle}"                        
+                        x:Name="nameValidattor"
+                        Flags="ValidateOnValueChanged"
+                        MinimumLength="5"
+                        />
+                </Entry.Behaviors>
             </Entry>
-            <Entry Placeholder="PASSWORD" Text="{Binding Password}">
+            <Label Text="{Binding errorText}" x:Name="lblError"  IsVisible="{Binding hasError, Converter={StaticResource InvertedBoolConverter}}" TextColor="red"></Label>
+            <Entry Placeholder="password" Text="{Binding password}" TextChanged="Entry_TextChanged"
+                   
+                   >
 
             </Entry>
             <Button
@@ -21,6 +42,10 @@
                 Text="LOG IN"
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
+                HorizontalOptions="Center" />
+            <Button
+                Text="TEST"
+                Command="{Binding GetMonkeysCommand}"
                 HorizontalOptions="Center" />
             <Label HorizontalTextAlignment="Center">
                 Forgot username/password

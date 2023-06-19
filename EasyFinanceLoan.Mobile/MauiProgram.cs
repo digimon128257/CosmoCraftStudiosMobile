@@ -1,4 +1,5 @@
-﻿using EasyFinanceLoan.Mobile.ViewModel;
+﻿using CommunityToolkit.Maui;
+using EasyFinanceLoan.Mobile.ViewModel;
 using Microsoft.Extensions.Logging;
 
 namespace EasyFinanceLoan.Mobile;
@@ -9,7 +10,7 @@ public static class MauiProgram
 	{
 		var builder = MauiApp.CreateBuilder();
 		builder
-			.UseMauiApp<App>()
+			.UseMauiApp<App>().UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -19,7 +20,7 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
-        builder.Services.AddSingleton<LoginViewModelcs>();
+        builder.Services.AddSingleton<LoginViewModel>();
         builder.Services.AddSingleton<MainPage>();
         return builder.Build();
 	}

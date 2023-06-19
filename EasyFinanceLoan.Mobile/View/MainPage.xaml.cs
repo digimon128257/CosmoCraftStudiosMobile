@@ -6,14 +6,18 @@ public partial class MainPage : ContentPage
 {
 	int count = 0;
 
-	public MainPage(LoginViewModelcs viewModel)
+	public MainPage(LoginViewModel viewModel)
 	{
 		InitializeComponent();
-		BindingContext = viewModel.Login;
+		BindingContext = viewModel;
 	}
 
 	private void OnCounterClicked(object sender, EventArgs e)
 	{
+		if(nameValidattor.IsNotValid)
+		{
+			DisplayAlert("Hello World", "ok", "ok2");
+		}
 		count++;
 
 		if (count == 1)
@@ -23,5 +27,9 @@ public partial class MainPage : ContentPage
 
 		SemanticScreenReader.Announce(CounterBtn.Text);
 	}
+
+    private void Entry_TextChanged(object sender, TextChangedEventArgs e)
+    {
+    }
 }
 
