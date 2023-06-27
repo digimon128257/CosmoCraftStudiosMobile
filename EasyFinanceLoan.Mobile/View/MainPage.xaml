@@ -31,21 +31,15 @@
                         />
                 </Entry.Behaviors>
             </Entry>
-            <Label Text="{Binding errorText}" x:Name="lblError"  IsVisible="{Binding hasError, Converter={StaticResource InvertedBoolConverter}}" TextColor="red"></Label>
-            <Entry Placeholder="password" Text="{Binding password}" TextChanged="Entry_TextChanged"
-                   
-                   >
-
+            <Label Text="{Binding errorText}" x:Name="lblError"  IsVisible="{Binding hasError}" TextColor="red"></Label>
+            <Entry Placeholder="password" Text="{Binding password}" IsPassword="True">
             </Entry>
             <Button
                 x:Name="CounterBtn"
                 Text="LOG IN"
+                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:LoginViewModel}}, Path=GoToLoan1Command}"
+                CommandParameter="{Binding .}"
                 SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-            <Button
-                Text="TEST"
-                Command="{Binding GetMonkeysCommand}"
                 HorizontalOptions="Center" />
             <Label HorizontalTextAlignment="Center">
                 Forgot username/password

@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EasyFinanceLoan.Mobile.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,7 +23,6 @@ namespace EasyFinanceLoan.Mobile.ViewModel
             set 
             {
                 this._userName = value;
-                Debug.WriteLine("12345");
                 if (this.userName.Length == 0)
                 {
                     this.errorText = "UserName is required";
@@ -48,18 +48,17 @@ namespace EasyFinanceLoan.Mobile.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
         [RelayCommand]
-        async Task GetMonkeysAsync()
-        {
-            this.userName = "test23456";
-            this.password = "rrrrr";
-            this.errorText = "Hello World";
-            var a = 1;
-            OnpropertyChanged(nameof(userName));
-            OnpropertyChanged(nameof(password));
-            OnpropertyChanged(nameof(errorText));
-        }
 
+        async Task GoToLoan1(LoginViewModel model)
+        {
+            if (model == null)
+                return;
+
+            await Shell.Current.GoToAsync(nameof(Loan1), true, new Dictionary<string, object>
+        {
+            {"Login", model }
+        });
+        }
     }
 }
