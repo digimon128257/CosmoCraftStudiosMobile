@@ -1,7 +1,4 @@
-using AndroidX.Lifecycle;
-using CommunityToolkit.Mvvm.ComponentModel;
 using EasyFinanceLoan.Mobile.ViewModel;
-using Xamarin.Google.Crypto.Tink.Mac;
 
 namespace EasyFinanceLoan.Mobile.View;
 
