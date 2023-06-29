@@ -6,6 +6,26 @@
              xmlns:viewmodel="clr-namespace:EasyFinanceLoan.Mobile.ViewModel"
              x:DataType="viewmodel:Loan1ViewModel"
     Title="ea$yFinance">
+    <Shell.TitleView>
+        <HorizontalStackLayout VerticalOptions="Fill">
+            <Label
+      Text="ea$yFinance"
+      FontFamily="Strande2"
+      TextColor="#55dd55"
+      VerticalTextAlignment="Center"
+      VerticalOptions="CenterAndExpand"
+      HeightRequest="50"
+      FontSize="Medium" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+    </ContentPage.Resources>
     <VerticalStackLayout>
         <Border StrokeThickness="2" Padding="0">
             <VerticalStackLayout>
@@ -36,8 +56,19 @@
                         <Entry Placeholder="Address 2" Text="{Binding address2}" MinimumWidthRequest="350" />
                     </HorizontalStackLayout>
                     <HorizontalStackLayout Padding="10">
-                        <Entry Placeholder="Email" Text="{Binding eMail}" MinimumWidthRequest="170" />
-                        <Entry Placeholder="Contact #" Text="{Binding contact}" MinimumWidthRequest="170" />
+                        <Entry Placeholder="Email" Text="{Binding eMail}" MinimumWidthRequest="170" >
+                            <Entry.Behaviors>
+                                <toolkit:EmailValidationBehavior 
+                                    InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                    ValidStyle="{StaticResource ValidEntryStyle}"
+                                    Flags="ValidateOnValueChanged" />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Entry Placeholder="Contact #" Text="{Binding contact}" MinimumWidthRequest="170" Keyboard="Numeric">
+                            <Entry.Behaviors>
+                                <toolkit:MaskedBehavior Mask="XXX XXX XXXX" />
+                            </Entry.Behaviors>
+                        </Entry>
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
             </VerticalStackLayout>
@@ -47,8 +78,17 @@
                 <Label>ID Information</Label>
                 <VerticalStackLayout>
                     <HorizontalStackLayout Padding="10">
-                        <Entry Placeholder="ID Type" Text="{Binding idType}" MinimumWidthRequest="170"/>
-                        <Entry Placeholder="ID Number" Text="{Binding idNumber}" MinimumWidthRequest="170" />
+                        <Picker Title="Select a ID Type" SelectedItem="{Binding idType}">
+                            <Picker.Items>
+                                <x:String>Private</x:String>
+                                <x:String>Public</x:String>
+                            </Picker.Items>
+                        </Picker>
+                        <Entry Placeholder="ID Number" Text="{Binding idNumber}" MinimumWidthRequest="170"  Keyboard="Numeric">
+                            <Entry.Behaviors>
+                                <toolkit:MaskedBehavior Mask="XXX XX XXXX" />
+                            </Entry.Behaviors>
+                        </Entry>
                     </HorizontalStackLayout>
                     <HorizontalStackLayout Padding="10">
                         <Entry Placeholder="Issue Date" Text="{Binding issueDate}" MinimumWidthRequest="170"/>
@@ -58,9 +98,9 @@
             </VerticalStackLayout>
         </Border>
         <HorizontalStackLayout Padding="10">
-            <Entry Placeholder="Password" Text="{Binding password}" MinimumWidthRequest="140"/>
-            <Entry Placeholder="Confirm" Text="{Binding confirm}" MinimumWidthRequest="140" />
-            <Button Text="Submit" Clicked="Submit_Clicked"  />
+            <Entry Placeholder="Password" Text="{Binding password}" MinimumWidthRequest="140" IsPassword="True"/>
+            <Entry Placeholder="Confirm" Text="{Binding confirm}" MinimumWidthRequest="140" IsPassword="True"/>
         </HorizontalStackLayout>
+        <Button Text="Submit" Clicked="Submit_Clicked"  HorizontalOptions="Center" WidthRequest="120" />
     </VerticalStackLayout>
 </ContentPage>

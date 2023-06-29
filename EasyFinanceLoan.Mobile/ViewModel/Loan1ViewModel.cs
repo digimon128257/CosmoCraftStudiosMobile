@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ViewModel;
-using Xamarin.Google.Crypto.Tink.Mac;
 
 namespace EasyFinanceLoan.Mobile.ViewModel
 {
@@ -15,6 +14,8 @@ namespace EasyFinanceLoan.Mobile.ViewModel
         public Loan1ViewModel()
         {
             dob = DateTime.Today.AddYears(-25);
+            _issueDate = DateTime.Today;
+            _expDate = DateTime.Today;
         }
 
         [ObservableProperty]
@@ -31,8 +32,10 @@ namespace EasyFinanceLoan.Mobile.ViewModel
         public string contact { get; set; }
         public string idType { get; set; }
         public string idNumber { get; set; }
-        public string issueDate { get; set; }
-        public string expDate { get; set; }
+        public DateTime _issueDate;
+        public DateTime _expDate;
+        public string issueDate { get { return _issueDate.ToString("MM/dd/yyyy"); } }
+        public string expDate { get { return _expDate.ToString("MM/dd/yyyy"); } }
         public string password { get; set; }
         public string confirm { get; set; }
     }
