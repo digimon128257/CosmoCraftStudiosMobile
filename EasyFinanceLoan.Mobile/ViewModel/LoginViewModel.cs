@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using ViewModel;
@@ -52,13 +53,38 @@ namespace EasyFinanceLoan.Mobile.ViewModel
 
         async Task GoToLoan1(LoginViewModel model)
         {
+            System.Net.ServicePointManager.ServerCertificateValidationCallback +=
+            delegate (object sender, System.Security.Cryptography.X509Certificates.X509Certificate certificate,
+                                    System.Security.Cryptography.X509Certificates.X509Chain chain,
+                                    System.Net.Security.SslPolicyErrors sslPolicyErrors)
+            {
+                return true; // **** Always accept
+            };
+            var handler = new HttpClientHandler();
+
+            handler.ServerCertificateCustomValidationCallback +=
+                            (sender, certificate, chain, errors) =>
+                            {
+                                return true;
+                            };
             if (model == null)
                 return;
-
+            HttpClient httpClient = new HttpClient();
+        var response = await httpClient.GetFromJsonAsync<List< WeatherForecast>>("https://ce58-47-35-180-19.ngrok.io/WeatherForecast");
             await Shell.Current.GoToAsync(nameof(Loan1), true, new Dictionary<string, object>
         {
             {"Login", model }
         });
         }
+    }
+    public class WeatherForecast
+    {
+        public DateOnly Date { get; set; }
+
+        public int TemperatureC { get; set; }
+
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+
+        public string? Summary { get; set; }
     }
 }
