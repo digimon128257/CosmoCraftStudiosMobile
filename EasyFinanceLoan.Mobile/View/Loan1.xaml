@@ -91,8 +91,8 @@
                         </Entry>
                     </HorizontalStackLayout>
                     <HorizontalStackLayout Padding="10">
-                        <Entry Placeholder="Issue Date" Text="{Binding issueDate}" MinimumWidthRequest="170"/>
-                        <Entry Placeholder="Expiration Date" Text="{Binding expDate}" MinimumWidthRequest="170" />
+                        <Entry Placeholder="Issue Date" Text="{Binding issueDate}" MinimumWidthRequest="170" IsReadOnly="True"/>
+                        <Entry Placeholder="Expiration Date" Text="{Binding expDate}" MinimumWidthRequest="170" IsReadOnly="True" />
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
             </VerticalStackLayout>
