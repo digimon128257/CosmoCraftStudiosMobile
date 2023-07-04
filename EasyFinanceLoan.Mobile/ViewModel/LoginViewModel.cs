@@ -75,7 +75,7 @@ namespace EasyFinanceLoan.Mobile.ViewModel
                             };
             if (model == null)
                 return;
-            var response = await _genericService.GetWeathers();
+            var response = await _genericService.GetTransactions();
             await Shell.Current.GoToAsync(nameof(Loan1), true, new Dictionary<string, object>
         {
             {"Login", model }

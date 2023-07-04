@@ -1,6 +1,6 @@
 namespace EasyFinanceLoan.Api
 {
-    public class WeatherForecast
+    public class Transaction
     {
         public DateOnly Date { get; set; }
 
