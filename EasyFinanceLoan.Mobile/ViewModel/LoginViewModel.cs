@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EasyFinanceLoan.Mobile.Services;
 using EasyFinanceLoan.Mobile.View;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,11 @@ namespace EasyFinanceLoan.Mobile.ViewModel
 {
     public partial class LoginViewModel : BaseViewModel, INotifyPropertyChanged
     {
+        GenericService _genericService;
+        public LoginViewModel(GenericService genericService)
+        {
+            _genericService = genericService;
+        }
         private string _userName;
 
         public string userName 
@@ -69,22 +75,11 @@ namespace EasyFinanceLoan.Mobile.ViewModel
                             };
             if (model == null)
                 return;
-            HttpClient httpClient = new HttpClient();
-        var response = await httpClient.GetFromJsonAsync<List< WeatherForecast>>("https://ce58-47-35-180-19.ngrok.io/WeatherForecast");
+            var response = await _genericService.GetWeathers();
             await Shell.Current.GoToAsync(nameof(Loan1), true, new Dictionary<string, object>
         {
             {"Login", model }
         });
         }
-    }
-    public class WeatherForecast
-    {
-        public DateOnly Date { get; set; }
-
-        public int TemperatureC { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-
-        public string? Summary { get; set; }
     }
 }

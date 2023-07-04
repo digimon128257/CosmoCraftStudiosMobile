@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using EasyFinanceLoan.Mobile.Services;
 using EasyFinanceLoan.Mobile.View;
 using EasyFinanceLoan.Mobile.ViewModel;
 using Microsoft.Extensions.Logging;
@@ -21,6 +22,8 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
+        builder.Services.AddSingleton<GenericService>();
+
         builder.Services.AddSingleton<LoginViewModel>();
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddTransient<Loan1>();
