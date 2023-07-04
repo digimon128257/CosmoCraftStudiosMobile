@@ -9,20 +9,18 @@ namespace EasyFinanceLoan.Mobile.Services
 {
     public class GenericService
     {
-        public async Task<List<WeatherForecast>> GetWeathers()
+        public async Task<List<Transaction>> GetTransactions()
         {
             HttpClient httpClient = new HttpClient();
-            return await httpClient.GetFromJsonAsync<List< WeatherForecast>>("https://c00c-47-35-180-19.ngrok.io/WeatherForecast");
+            return await httpClient.GetFromJsonAsync<List<Transaction>>("https://c00c-47-35-180-19.ngrok.io/Transaction");
         }
     }
-    public class WeatherForecast
+    public class Transaction
     {
-        public DateOnly Date { get; set; }
-
-        public int TemperatureC { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-
-        public string? Summary { get; set; }
+        public long Id { get; set; }
+        public long GroupId { get; set; }
+        public int TransType { get; set; }
+        public decimal Amount { get; set; }
+        public string Remark { get; set; }
     }
 }

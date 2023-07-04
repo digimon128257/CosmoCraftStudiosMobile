@@ -8,22 +8,17 @@ namespace EasyFinanceLoan.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class TransactionController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+        private readonly ILogger<TransactionController> _logger;
 
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public TransactionController(ILogger<TransactionController> logger)
         {
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet(Name = "GetTransaction")]
+        public IEnumerable<Transaction> Get()
         {
             var configuration = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
@@ -34,7 +29,7 @@ namespace EasyFinanceLoan.Api.Controllers
             var s = "select * from dbo.Transactions";
             using (SqlCommand cmdSQL = new SqlCommand(s, c))
             {
-                var r = cmdSQL.ExecuteReader();
+                        var r = cmdSQL.ExecuteReader();
                 var t = new List<Transaction>();
                 while (r.Read())
                 {
@@ -47,15 +42,8 @@ namespace EasyFinanceLoan.Api.Controllers
                         Remark = r.GetString("Remark")
                     });
                 }
+                return t;
             }
-
-                return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
         }
     }
     public class Transaction
