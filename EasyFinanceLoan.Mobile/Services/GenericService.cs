@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http.Json;
+using System.Net.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,8 +13,27 @@ namespace EasyFinanceLoan.Mobile.Services
     {
         public async Task<List<Transaction>> GetTransactions()
         {
-            HttpClient httpClient = new HttpClient();
-            return await httpClient.GetFromJsonAsync<List<Transaction>>("https://c00c-47-35-180-19.ngrok.io/Transaction");
+            using (var httpClientHandler = new HttpClientHandler())
+            {
+                httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                {
+                    if (sslPolicyErrors == SslPolicyErrors.None)
+                    {
+                        return true;   //Is valid
+                    }
+
+                    if (cert.GetCertHashString() == "E5CE41BE6F81C5E25743077E7A9D3E10A5574C21")
+                    {
+                        return true;
+                    }
+                    return false;
+                };
+
+                using (var httpClient = new HttpClient(httpClientHandler))
+                {
+                    return await httpClient.GetFromJsonAsync<List<Transaction>>("https://192.168.1.2:8082/Transaction");
+                }
+            }
         }
     }
     public class Transaction
