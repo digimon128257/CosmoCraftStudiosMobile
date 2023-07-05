@@ -22,14 +22,14 @@ namespace EasyFinanceLoan.Api.Controllers
         {
             var configuration = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
-.Build();
+            .Build();
             var connectionString = configuration.GetConnectionString("KioskAdmin");
             var c = new SqlConnection(connectionString);
             c.Open();
             var s = "select * from dbo.Transactions";
             using (SqlCommand cmdSQL = new SqlCommand(s, c))
             {
-                        var r = cmdSQL.ExecuteReader();
+                var r = cmdSQL.ExecuteReader();
                 var t = new List<Transaction>();
                 while (r.Read())
                 {
@@ -42,6 +42,14 @@ namespace EasyFinanceLoan.Api.Controllers
                         Remark = r.GetString("Remark")
                     });
                 }
+                t.Add(new Transaction()
+                {
+                    Amount = 1,
+                    GroupId = 1,
+                    Id = 0,
+                    Remark = "test2",
+                    TransType = 1
+                });
                 return t;
             }
         }
