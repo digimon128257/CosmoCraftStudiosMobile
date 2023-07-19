@@ -4,6 +4,7 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="EasyFinanceLoan.Mobile.MainPage"
              xmlns:viewmodel="clr-namespace:EasyFinanceLoan.Mobile.ViewModel"
+             xmlns:customControl="clr-namespace:EasyFinanceLoan.Mobile.CustomControls"
              x:DataType="viewmodel:LoginViewModel">
     <Shell.TitleView>
         <HorizontalStackLayout VerticalOptions="Fill">
@@ -32,22 +33,12 @@
             VerticalOptions="Center"
             BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
             <Label  HorizontalTextAlignment="Center" FontSize="48" TextColor="#55dd55" FontAttributes="Bold">ea$yFinance</Label>
-            <Entry Placeholder="USERNAME" Text="{Binding userName}">
-                <Entry.Behaviors>
-                    <toolkit:TextValidationBehavior
-                        InvalidStyle="{StaticResource InvalidEntryStyle}"
-                        ValidStyle="{StaticResource ValidEntryStyle}"                        
-                        x:Name="nameValidattor"
-                        Flags="ValidateOnValueChanged"
-                        MinimumLength="5"
-                        />
-                </Entry.Behaviors>
-            </Entry>
+            <customControl:OutliinedEntryControl Placeholder="User Name" Text="{Binding userName}" />
             <Label Text="{Binding errorText}" x:Name="lblError"  IsVisible="{Binding hasError}" TextColor="red"></Label>
-            <Entry Placeholder="password" Text="{Binding password}" IsPassword="True">
-            </Entry>
+            <customControl:OutliinedEntryControl Placeholder="Password" IsPassword="True" Text="{Binding password}" />
             <Button
                 Text="LOG IN"
+                BackgroundColor="#00ff00"
                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:LoginViewModel}}, Path=GoToLoan1Command}"
                 CommandParameter="{Binding .}"
                 SemanticProperties.Hint="Counts the number of times you click"
