@@ -59,7 +59,7 @@ namespace EasyFinanceLoan.Mobile.ViewModel
 
         async Task GoToLoan1(LoginViewModel model)
         {
-            var response = await _genericService.GetTransactions();
+            //var response = await _genericService.GetTransactions();
             await Shell.Current.GoToAsync(nameof(Loan1), true, new Dictionary<string, object>
         {
             {"Login", model }

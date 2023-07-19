@@ -47,7 +47,7 @@ namespace EasyFinanceLoan.Api.Controllers
                     Amount = 1,
                     GroupId = 1,
                     Id = 0,
-                    Remark = "test2",
+                    Remark = "test2 ",
                     TransType = 1
                 });
                 return t;
