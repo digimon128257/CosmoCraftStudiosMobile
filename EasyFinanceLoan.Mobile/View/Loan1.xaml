@@ -4,6 +4,7 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="EasyFinanceLoan.Mobile.View.Loan1"
              xmlns:viewmodel="clr-namespace:EasyFinanceLoan.Mobile.ViewModel"
+             xmlns:customControl="clr-namespace:EasyFinanceLoan.Mobile.CustomControls"
              x:DataType="viewmodel:Loan1ViewModel"
     Title="ea$yFinance">
     <Shell.TitleView>
@@ -27,17 +28,17 @@
         </Style>
     </ContentPage.Resources>
     <VerticalStackLayout>
-        <Border StrokeThickness="2" Padding="0">
+        <Border StrokeThickness="2" Stroke="#aaaaaa" Padding="4, 2, 2, 2">
             <VerticalStackLayout>
                 <Label>Personal Information</Label>
                 <VerticalStackLayout>
-                    <HorizontalStackLayout Padding="10">
-                        <Entry Placeholder="Last Name" Text="{Binding lastName}" MinimumWidthRequest="170"/>
-                        <Entry Placeholder="First Name" Text="{Binding firstName}" MinimumWidthRequest="170" />
+                    <HorizontalStackLayout Padding="0, 14, 0, 0">
+                        <customControl:OutliinedEntryControl MinimumWidthRequest="170" Placeholder="Last Name" Text="{Binding lastName}" />
+                        <customControl:OutliinedEntryControl MinimumWidthRequest="170" Placeholder="First Name" Text="{Binding firstName}" />
                     </HorizontalStackLayout>
-                    <HorizontalStackLayout Padding="10">
-                        <DatePicker Format="MM/dd/yyyy" Date="{Binding dob}"></DatePicker>
-                        <Picker Title="Select a Gender" SelectedItem="{Binding sex}">
+                    <HorizontalStackLayout Padding="0, 18, 0, 0">
+                        <customControl:OutliinedDateControl Placeholder="DOB" CDate="{Binding dob}"/>
+                        <Picker Title="Select a Gender" SelectedItem="{Binding sex}" ItemsSource="{Binding sexes}">
                             <Picker.Items>
                                 <x:String>Male</x:String>
                                 <x:String>Female</x:String>
