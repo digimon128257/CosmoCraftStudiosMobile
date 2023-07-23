@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using ViewModel;
 
 namespace EasyFinanceLoan.Mobile.ViewModel
@@ -25,6 +26,7 @@ namespace EasyFinanceLoan.Mobile.ViewModel
         public string firstName { get; set; }
         public DateTime dob { get; set; }
         public string sex { get; set; }
+        public List<string> sexes { get { return new List<string>() { "Male", "Female" }; } }
         public string trn { get; set; }
         public string address1 { get; set; }
         public string address2 { get; set; }
