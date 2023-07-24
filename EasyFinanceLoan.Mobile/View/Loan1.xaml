@@ -37,24 +37,15 @@
                         <customControl:OutliinedEntryControl MinimumWidthRequest="170" Placeholder="First Name" Text="{Binding firstName}" />
                     </HorizontalStackLayout>
                     <HorizontalStackLayout Padding="0, 18, 0, 0">
-                        <customControl:OutliinedDateControl Placeholder="DOB" CDate="{Binding dob}"/>
-                        <Picker Title="Select a Gender" SelectedItem="{Binding sex}" ItemsSource="{Binding sexes}">
-                            <Picker.Items>
-                                <x:String>Male</x:String>
-                                <x:String>Female</x:String>
-                            </Picker.Items>
-                        </Picker>
-                        <Entry Placeholder="TRN #" Text="{Binding trn}" MinimumWidthRequest="170" Keyboard="Numeric">
-                            <Entry.Behaviors>
-                                <toolkit:MaskedBehavior Mask="XXXX XXXX XXXX XXXX" />
-                            </Entry.Behaviors>
-                        </Entry>
+                        <customControl:OutliinedDateControl Placeholder="DOB" WidthRequest="120" CDate="{Binding dob}"/>
+                        <customControl:OutliinedSelectControl Placeholder="Gender" WidthRequest="120" ItemSources="{Binding sexes}" SelectedItem="{Binding sex}" />
+                        <customControl:OutliinedEntryControl MinimumWidthRequest="120" Placeholder="TRN #" Text="{Binding trn}" KeyboardType="Numeric" TextMask="XXX XX XXXX" />
                     </HorizontalStackLayout>
-                    <HorizontalStackLayout Padding="10">
-                        <Entry Placeholder="Address 1" Text="{Binding address1}" MinimumWidthRequest="350" />
+                    <HorizontalStackLayout Padding="0, 18, 0, 0">
+                        <customControl:OutliinedEntryControl MinimumWidthRequest="350" Placeholder="Address 1" Text="{Binding address1}" />
                     </HorizontalStackLayout>
-                    <HorizontalStackLayout Padding="10">
-                        <Entry Placeholder="Address 2" Text="{Binding address2}" MinimumWidthRequest="350" />
+                    <HorizontalStackLayout Padding="0, 18, 0, 0">
+                        <customControl:OutliinedEntryControl MinimumWidthRequest="350" Placeholder="Address 2" Text="{Binding address2}" />
                     </HorizontalStackLayout>
                     <HorizontalStackLayout Padding="10">
                         <Entry Placeholder="Email" Text="{Binding eMail}" MinimumWidthRequest="170" >
