@@ -1,3 +1,5 @@
+using CommunityToolkit.Maui.Behaviors;
+
 namespace EasyFinanceLoan.Mobile.CustomControls;
 
 public partial class OutliinedEntryControl : Grid
@@ -35,6 +37,20 @@ public partial class OutliinedEntryControl : Grid
         set => SetValue(IsPasswordProperty, value);
     }
 
+
+    public static readonly BindableProperty KeyboardTypeProperty = BindableProperty.Create(
+        propertyName: nameof(KeyboardType),
+        returnType: typeof(Keyboard),
+        declaringType: typeof(OutliinedEntryControl),
+        defaultValue: null,
+        defaultBindingMode: BindingMode.OneWay
+        );
+    public Keyboard KeyboardType
+    {
+        get => (Keyboard)GetValue(KeyboardTypeProperty);
+        set => SetValue(KeyboardTypeProperty, value);
+    }
+
     public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(
         propertyName: nameof(Placeholder),
         returnType: typeof(string),
@@ -46,6 +62,19 @@ public partial class OutliinedEntryControl : Grid
     {
         get => (string)GetValue(PlaceholderProperty);
         set => SetValue(PlaceholderProperty, value);
+    }
+
+    public static readonly BindableProperty TextMaskProperty = BindableProperty.Create(
+        propertyName: nameof(TextMask),
+        returnType: typeof(string),
+        declaringType: typeof(OutliinedEntryControl),
+        defaultValue: null,
+        defaultBindingMode: BindingMode.OneWay
+        );
+    public string TextMask
+    {
+        get => (string)GetValue(TextMaskProperty);
+        set => SetValue(TextMaskProperty, value);
     }
 
     private void txtEntry_Focused(object sender, FocusEventArgs e)
