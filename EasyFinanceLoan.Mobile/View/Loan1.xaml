@@ -32,67 +32,78 @@
             <VerticalStackLayout>
                 <Label>Personal Information</Label>
                 <VerticalStackLayout>
-                    <HorizontalStackLayout Padding="0, 14, 0, 0">
-                        <customControl:OutliinedEntryControl MinimumWidthRequest="170" Placeholder="Last Name" Text="{Binding lastName}" />
-                        <customControl:OutliinedEntryControl MinimumWidthRequest="170" Placeholder="First Name" Text="{Binding firstName}" />
-                    </HorizontalStackLayout>
-                    <HorizontalStackLayout Padding="0, 18, 0, 0">
-                        <customControl:OutliinedDateControl Placeholder="DOB" WidthRequest="120" CDate="{Binding dob}"/>
-                        <customControl:OutliinedSelectControl Placeholder="Gender" WidthRequest="120" ItemSources="{Binding sexes}" SelectedItem="{Binding sex}" />
-                        <customControl:OutliinedEntryControl MinimumWidthRequest="120" Placeholder="TRN #" Text="{Binding trn}" KeyboardType="Numeric" TextMask="XXX XX XXXX" />
-                    </HorizontalStackLayout>
-                    <HorizontalStackLayout Padding="0, 18, 0, 0">
-                        <customControl:OutliinedEntryControl MinimumWidthRequest="350" Placeholder="Address 1" Text="{Binding address1}" />
-                    </HorizontalStackLayout>
-                    <HorizontalStackLayout Padding="0, 18, 0, 0">
-                        <customControl:OutliinedEntryControl MinimumWidthRequest="350" Placeholder="Address 2" Text="{Binding address2}" />
-                    </HorizontalStackLayout>
-                    <HorizontalStackLayout Padding="10">
-                        <Entry Placeholder="Email" Text="{Binding eMail}" MinimumWidthRequest="170" >
-                            <Entry.Behaviors>
-                                <toolkit:EmailValidationBehavior 
-                                    InvalidStyle="{StaticResource InvalidEntryStyle}"
-                                    ValidStyle="{StaticResource ValidEntryStyle}"
-                                    Flags="ValidateOnValueChanged" />
-                            </Entry.Behaviors>
-                        </Entry>
-                        <Entry Placeholder="Contact #" Text="{Binding contact}" MinimumWidthRequest="170" Keyboard="Numeric">
-                            <Entry.Behaviors>
-                                <toolkit:MaskedBehavior Mask="XXX XXX XXXX" />
-                            </Entry.Behaviors>
-                        </Entry>
-                    </HorizontalStackLayout>
+                    <Grid Padding="4, 14, 6, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <customControl:OutliinedEntryControl Placeholder="Last Name" Text="{Binding lastName}" Grid.Column="0" />
+                        <customControl:OutliinedEntryControl Placeholder="First Name" Text="{Binding firstName}" Grid.Column="1" />
+                    </Grid>
+                    <Grid Padding="4, 14, 6, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <customControl:OutliinedDateControl Placeholder="DOB" WidthRequest="120" CDate="{Binding dob}" Grid.Column="0"/>
+                        <customControl:OutliinedSelectControl Placeholder="Gender" WidthRequest="120" ItemSources="{Binding sexes}" SelectedItem="{Binding sex}" Grid.Column="1"/>
+                        <customControl:OutliinedEntryControl MinimumWidthRequest="120" Placeholder="TRN #" Text="{Binding trn}" KeyboardType="Numeric" TextMask="XXX XX XXXX" Grid.Column="2"/>
+                    </Grid>
+                    <Grid Padding="4, 14, 6, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <customControl:OutliinedEntryControl MinimumWidthRequest="350" Placeholder="Address 1" Text="{Binding address1}" Grid.Column="0" />
+                    </Grid>
+                    <Grid Padding="4, 14, 6, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <customControl:OutliinedEntryControl MinimumWidthRequest="350" Placeholder="Address 2" Text="{Binding address2}" Grid.Column="0"/>
+                    </Grid>
+                    <Grid Padding="4, 14, 6, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <customControl:OutliinedEmailControl Placeholder="Email" Text="{Binding eMail}" Grid.Column="0"/>
+                        <customControl:OutliinedEntryControl MinimumWidthRequest="170" Placeholder="Contact #" Text="{Binding contact}" KeyboardType="Numeric" TextMask="XXX XXX XXXX" Grid.Column="1" />
+                    </Grid>
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </Border>
-        <Border StrokeThickness="2" Padding="0">
+        <Border StrokeThickness="2" Stroke="#aaaaaa" Padding="4, 2, 2, 2">
             <VerticalStackLayout>
                 <Label>ID Information</Label>
                 <VerticalStackLayout>
-                    <HorizontalStackLayout Padding="10">
-                        <Picker Title="Select a ID Type" SelectedItem="{Binding idType}">
-                            <Picker.Items>
-                                <x:String>Private</x:String>
-                                <x:String>Public</x:String>
-                            </Picker.Items>
-                        </Picker>
-                        <Entry Placeholder="ID Number" Text="{Binding idNumber}" MinimumWidthRequest="170"  Keyboard="Numeric">
-                            <Entry.Behaviors>
-                                <toolkit:MaskedBehavior Mask="XXX XX XXXX" />
-                            </Entry.Behaviors>
-                        </Entry>
-                    </HorizontalStackLayout>
-                    <HorizontalStackLayout Padding="10">
-                        <Entry Placeholder="Issue Date" Text="{Binding issueDate}" MinimumWidthRequest="170" IsReadOnly="True"/>
-                        <Entry Placeholder="Expiration Date" Text="{Binding expDate}" MinimumWidthRequest="170" IsReadOnly="True" />
-                    </HorizontalStackLayout>
+                    <Grid Padding="4, 14, 6, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <customControl:OutliinedSelectControl Placeholder="Id Type" ItemSources="{Binding idTypes}" SelectedItem="{Binding idType}" Grid.Column="0"/>
+                        <customControl:OutliinedEntryControl Placeholder="Id Number" Text="{Binding contact}" KeyboardType="Numeric" TextMask="XXX XX XXXX" Grid.Column="1" />
+                    </Grid>
+                    <Grid Padding="4, 14, 6, 0">
+                        <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                        <customControl:OutliinedEntryControl Placeholder="Issue Date" IsReadOnlyEntry="True" Text="{Binding issueDate}" Grid.Column="0" />
+                        <customControl:OutliinedEntryControl Placeholder="Exp Date" IsReadOnlyEntry="True" Text="{Binding expDate}" Grid.Column="1" />
+                    </Grid>
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </Border>
-        <HorizontalStackLayout Padding="10">
-            <Entry Placeholder="Password" Text="{Binding password}" MinimumWidthRequest="140" IsPassword="True"/>
-            <Entry Placeholder="Confirm" Text="{Binding confirm}" MinimumWidthRequest="140" IsPassword="True"/>
-        </HorizontalStackLayout>
-        <Button Text="Submit" Clicked="Submit_Clicked"  HorizontalOptions="Center" WidthRequest="120" />
+        <Grid Padding="4, 14, 6, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <customControl:OutliinedEntryControl Placeholder="Password" MinimumWidthRequest="140" IsPassword="True" Text="{Binding password}" Grid.Column="0"/>
+            <customControl:OutliinedEntryControl Placeholder="Confirm" MinimumWidthRequest="140" IsPassword="True" Text="{Binding confirm}" Grid.Column="1"/>
+        </Grid>
+        <Button Margin="20" Text="Submit" Clicked="Submit_Clicked"  HorizontalOptions="Center" WidthRequest="120" BackgroundColor="#00ff00"/>
     </VerticalStackLayout>
 </ContentPage>

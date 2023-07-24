@@ -76,6 +76,9 @@
 	  <MauiXaml Update="CustomControls\OutlineDateControl.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="CustomControls\OutlinedEmailControl.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="CustomControls\OutlinedSelectControl.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

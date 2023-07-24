@@ -37,6 +37,18 @@ public partial class OutliinedEntryControl : Grid
         set => SetValue(IsPasswordProperty, value);
     }
 
+    public static readonly BindableProperty IsReadOnlyEntryProperty = BindableProperty.Create(
+        propertyName: nameof(IsReadOnlyEntry),
+        returnType: typeof(bool),
+        declaringType: typeof(OutliinedEntryControl),
+        defaultValue: null,
+        defaultBindingMode: BindingMode.OneWay
+        );
+    public bool IsReadOnlyEntry
+    {
+        get => (bool)GetValue(IsReadOnlyEntryProperty);
+        set => SetValue(IsReadOnlyEntryProperty, value);
+    }
 
     public static readonly BindableProperty KeyboardTypeProperty = BindableProperty.Create(
         propertyName: nameof(KeyboardType),

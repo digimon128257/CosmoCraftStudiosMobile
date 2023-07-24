@@ -4,22 +4,18 @@
             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
             RowDefinitions="40"
             x:Name="this"
-            x:Class="EasyFinanceLoan.Mobile.CustomControls.OutliinedEntryControl">
+            x:Class="EasyFinanceLoan.Mobile.CustomControls.OutliinedEmailControl">
     <Border Grid.Row="0" Stroke="#aaaaaa" BackgroundColor="White" StrokeThickness="2" x:Name="bdrOuter" Padding="2">
         <Border.StrokeShape>
             <RoundRectangle CornerRadius="5" />
         </Border.StrokeShape>
         <Frame Padding="6" >
             <Entry  Text="{Binding Source={x:Reference this}, Path=Text}"
-            x:Name="txtEntry" TextColor="Black" 
-            HeightRequest="50" IsReadOnly= "{Binding Source={x:Reference this}, Path=IsReadOnlyEntry}" 
-            IsPassword= "{Binding Source={x:Reference this}, Path=IsPassword}" Keyboard= "{Binding Source={x:Reference this}, Path=KeyboardType}"
+            x:Name="txtEntry"
+            HeightRequest="50" 
             Focused="txtEntry_Focused"   
             Unfocused="txtEntry_Unfocused"   
             >
-                <Entry.Behaviors>
-                    <toolkit:MaskedBehavior Mask="{Binding Source={x:Reference this}, Path=TextMask}" />
-                </Entry.Behaviors>
             </Entry>
         </Frame>
     </Border>
