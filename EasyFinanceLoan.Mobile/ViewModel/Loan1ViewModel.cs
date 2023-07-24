@@ -33,6 +33,7 @@ namespace EasyFinanceLoan.Mobile.ViewModel
         public string eMail { get; set; }
         public string contact { get; set; }
         public string idType { get; set; }
+        public List<string> idTypes { get { return new List<string>() { "Public", "Private" }; } }
         public string idNumber { get; set; }
         public DateTime _issueDate;
         public DateTime _expDate;
