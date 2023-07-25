@@ -1,4 +1,5 @@
 ﻿using EasyFinanceLoan.Mobile.ViewModel;
+using System.Windows.Input;
 
 namespace EasyFinanceLoan.Mobile;
 
@@ -12,16 +13,16 @@ public partial class MainPage : ContentPage
 		BindingContext = viewModel;
 	}
 
-	//private void OnCounterClicked(object sender, EventArgs e)
-	//{
-	//	if(nameValidattor.IsNotValid)
-	//	{
-	//		DisplayAlert("Hello World", "ok", "ok2");
-	//	}
-	//	count++;
+    //private void OnCounterClicked(object sender, EventArgs e)
+    //{
+    //	if(nameValidattor.IsNotValid)
+    //	{
+    //		DisplayAlert("Hello World", "ok", "ok2");
+    //	}
+    //	count++;
 
-	//	//SemanticScreenReader.Announce(CounterBtn.Text);
-	//}
+    //	//SemanticScreenReader.Announce(CounterBtn.Text);
+    //}
 
     private void Entry_TextChanged(object sender, TextChangedEventArgs e)
     {

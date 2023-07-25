@@ -11,6 +11,7 @@ using System.Linq;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using ViewModel;
 
 namespace EasyFinanceLoan.Mobile.ViewModel
@@ -64,6 +65,14 @@ namespace EasyFinanceLoan.Mobile.ViewModel
         {
             {"Login", model }
         });
+        }
+
+        public IRelayCommand OpenUrlCommand => new RelayCommand<String>(launch_browser);
+
+
+        private async void launch_browser(String url)
+        {
+            await Browser.OpenAsync(url);
         }
     }
 }
