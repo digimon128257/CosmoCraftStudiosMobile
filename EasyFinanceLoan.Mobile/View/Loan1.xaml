@@ -90,8 +90,8 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                        <customControl:OutliinedEntryControl Placeholder="Issue Date" IsReadOnlyEntry="True" Text="{Binding issueDate}" Grid.Column="0" />
-                        <customControl:OutliinedEntryControl Placeholder="Exp Date" IsReadOnlyEntry="True" Text="{Binding expDate}" Grid.Column="1" />
+                        <customControl:OutliinedEntryControl EntryBackColor="#dddddd" Placeholder="Issue Date" IsReadOnlyEntry="True" Text="{Binding issueDate}" Grid.Column="0" />
+                        <customControl:OutliinedEntryControl EntryBackColor="#dddddd" Placeholder="Exp Date" IsReadOnlyEntry="True" Text="{Binding expDate}" Grid.Column="1" />
                     </Grid>
                 </VerticalStackLayout>
             </VerticalStackLayout>

@@ -5,11 +5,11 @@
             RowDefinitions="40"
             x:Name="this"
             x:Class="EasyFinanceLoan.Mobile.CustomControls.OutliinedEntryControl">
-    <Border Grid.Row="0" Stroke="#aaaaaa" BackgroundColor="White" StrokeThickness="2" x:Name="bdrOuter" Padding="2">
+    <Border Grid.Row="0" Stroke="#aaaaaa" StrokeThickness="2" x:Name="bdrOuter" Padding="2">
         <Border.StrokeShape>
             <RoundRectangle CornerRadius="5" />
         </Border.StrokeShape>
-        <Frame Padding="6" >
+        <Frame Padding="6"  x:Name="fmeInner" BackgroundColor= "{Binding Source={x:Reference this}, Path=EntryBackColor}">
             <Entry  Text="{Binding Source={x:Reference this}, Path=Text}"
             x:Name="txtEntry" TextColor="Black" 
             HeightRequest="50" IsReadOnly= "{Binding Source={x:Reference this}, Path=IsReadOnlyEntry}" 

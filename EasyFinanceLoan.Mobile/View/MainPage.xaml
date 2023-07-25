@@ -50,7 +50,21 @@
                 New to EasyFinance?
             </Label>
             <Label HorizontalTextAlignment="Center">
-                Contact Us
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer 
+              Command="{Binding OpenUrlCommand}"
+              CommandParameter="https://www.lego.com/" 
+           />
+                </Label.GestureRecognizers>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span 
+                 Text="Contact us"
+                 TextColor="Blue"
+                 TextDecorations="Underline">
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
             </Label>
         </VerticalStackLayout>
     </ScrollView>

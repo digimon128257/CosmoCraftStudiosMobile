@@ -47,7 +47,9 @@ public partial class OutliinedEntryControl : Grid
     public bool IsReadOnlyEntry
     {
         get => (bool)GetValue(IsReadOnlyEntryProperty);
-        set => SetValue(IsReadOnlyEntryProperty, value);
+        set {
+            SetValue(IsReadOnlyEntryProperty, value);
+        } 
     }
 
     public static readonly BindableProperty KeyboardTypeProperty = BindableProperty.Create(
@@ -61,6 +63,19 @@ public partial class OutliinedEntryControl : Grid
     {
         get => (Keyboard)GetValue(KeyboardTypeProperty);
         set => SetValue(KeyboardTypeProperty, value);
+    }
+
+    public static readonly BindableProperty EntryBackColorProperty = BindableProperty.Create(
+        propertyName: nameof(EntryBackColor),
+        returnType: typeof(Color),
+        declaringType: typeof(OutliinedEntryControl),
+        defaultValue: null,
+        defaultBindingMode: BindingMode.OneWay
+        );
+    public Color EntryBackColor
+    {
+        get => (Color)GetValue(EntryBackColorProperty);
+        set => SetValue(EntryBackColorProperty, value);
     }
 
     public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(
@@ -91,7 +106,6 @@ public partial class OutliinedEntryControl : Grid
 
     private void txtEntry_Focused(object sender, FocusEventArgs e)
     {
-        bdrOuter.Stroke = Color.FromArgb("ff00ff00");
         bdrOuter.StrokeThickness = 2;
         lblPlaceholder.FontAttributes = FontAttributes.Bold;
     }
