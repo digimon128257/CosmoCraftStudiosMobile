@@ -106,6 +106,7 @@ public partial class OutliinedEntryControl : Grid
 
     private void txtEntry_Focused(object sender, FocusEventArgs e)
     {
+        bdrOuter.Stroke = Color.FromArgb("ffaaffaa");
         bdrOuter.StrokeThickness = 2;
         lblPlaceholder.FontAttributes = FontAttributes.Bold;
     }
